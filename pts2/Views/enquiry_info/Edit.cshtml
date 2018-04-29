@@ -1,0 +1,124 @@
+﻿@model pts2.Models.enquiry_info
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+
+@using (Html.BeginForm("Edit", "enquiry_info", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    <section class="content-header"> </section>
+    <section class="content">
+
+        <!-- left column -->
+        <!-- general form elements -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Inquiry</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-md-6">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.cid)
+                       
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            @Html.EditorFor(model => model.projectname, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.projectname, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Source</label>
+                            @Html.EnumDropDownListFor(model => model.source, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.source, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Remark</label>
+                            @Html.EditorFor(model => model.remark1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.remark1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label>Status</label>
+                            @Html.EnumDropDownListFor(model => model.status, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>tag</label>
+                            @Html.EditorFor(model => model.tag, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tag, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" name="file" multiple="multiple" />
+                            <br />
+                            <ul class="attachment">
+                                @foreach(var item in Model.attachments)
+                                {
+                                    <li>
+                                        <a class="title" href="/enquiry_info/Downld/?p=@(item.fileName)&d=@item.fileName">@item.fileName</a> &nbsp;
+                                        <a href="javascript:void(0);" data-id="@item.Id" class="deleteItem" style="color:red;"> X </a>
+                                    </li>
+                                    <br />
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                   
+                    <input type="submit" value="Save" class="btn btn-success pull-right" />
+                    <button onclick="location.href='@Url.Action("Index", "enquiry_info")' ;return false;" class="btn btn-primary pull-right" style="margin-right:8px;">Back</button>
+                    
+                </div>
+
+            </div>
+               
+           
+    </section>
+}
+<script>
+$('.deleteItem').click(function (e) {
+           e.preventDefault();
+           var $ctrl = $(this);
+           if (confirm('Do you really want to delete this file?')) {
+               $.ajax({
+                   url: '@Url.Action("DeleteFile")',
+                type: 'POST',
+                data: { id: $(this).data('id') }
+                }).done(function (data) {
+                if (data.Result == "OK") {
+                $ctrl.closest('li').remove();
+                }
+                else if (data.Result.Message) {
+                alert(data.Result.Message);
+                }
+                }).fail(function () {
+                alert("There is something wrong. Please try again.");
+                })
+
+                }
+    });
+</script>
+<!--    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

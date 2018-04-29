@@ -1,0 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using pts.Models;
+
+namespace pts.Controllers
+{
+    public class attachments_infoController : Controller
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: attachments_info
+        public ActionResult Index()
+        {
+            var attachment = db.attachment.Include(a => a.enquiry);
+            return View(attachment.ToList());
+        }
+
+        // GET: attachments_info/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            attachments_info attachments_info = db.attachment.Find(id);
+            if (attachments_info == null)
+            {
+                return HttpNotFound();
+            }
+            return View(attachments_info);
+        }
+
+        // GET: attachments_info/Create
+        public ActionResult Create()
+        {
+            ViewBag.cid = new SelectList(db.enquiry, "Id", "projectname");
+            return View();
+        }
+
+        // POST: attachments_info/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,cid,fileName")] attachments_info attachments_info)
+        {
+            if (ModelState.IsValid)
+            {
+                db.attachment.Add(attachments_info);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.cid = new SelectList(db.enquiry, "Id", "projectname", attachments_info.cid);
+            return View(attachments_info);
+        }
+
+        // GET: attachments_info/Edit/5
+        public ActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            attachments_info attachments_info = db.attachment.Find(id);
+            if (attachments_info == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.cid = new SelectList(db.enquiry, "Id", "projectname", attachments_info.cid);
+            return View(attachments_info);
+        }
+
+        // POST: attachments_info/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,cid,fileName")] attachments_info attachments_info)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(attachments_info).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.cid = new SelectList(db.enquiry, "Id", "projectname", attachments_info.cid);
+            return View(attachments_info);
+        }
+
+        // GET: attachments_info/Delete/5
+        public ActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            attachments_info attachments_info = db.attachment.Find(id);
+            if (attachments_info == null)
+            {
+                return HttpNotFound();
+            }
+            return View(attachments_info);
+        }
+
+        // POST: attachments_info/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(long id)
+        {
+            attachments_info attachments_info = db.attachment.Find(id);
+            db.attachment.Remove(attachments_info);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

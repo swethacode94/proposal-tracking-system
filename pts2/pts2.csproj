@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{50965CC9-7355-4FC1-8F5F-10C3659295C6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>pts2</RootNamespace>
+    <AssemblyName>pts2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.Patched.0.86.5\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\client_infoController.cs" />
+    <Compile Include="Controllers\enquiry_infoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\invoice_itemController.cs" />
+    <Compile Include="Controllers\invoice_mainController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\proposal_infoController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701250515261_initial-schema.cs" />
+    <Compile Include="Migrations\201701250515261_initial-schema.Designer.cs">
+      <DependentUpon>201701250515261_initial-schema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301237040_second migration.cs" />
+    <Compile Include="Migrations\201701301237040_second migration.Designer.cs">
+      <DependentUpon>201701301237040_second migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301241471_addedname.cs" />
+    <Compile Include="Migrations\201701301241471_addedname.Designer.cs">
+      <DependentUpon>201701301241471_addedname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301243142_secondadded.cs" />
+    <Compile Include="Migrations\201701301243142_secondadded.Designer.cs">
+      <DependentUpon>201701301243142_secondadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301245423_finalmigrat.cs" />
+    <Compile Include="Migrations\201701301245423_finalmigrat.Designer.cs">
+      <DependentUpon>201701301245423_finalmigrat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702020620556_countryadded.cs" />
+    <Compile Include="Migrations\201702020620556_countryadded.Designer.cs">
+      <DependentUpon>201702020620556_countryadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702020655247_addednew.cs" />
+    <Compile Include="Migrations\201702020655247_addednew.Designer.cs">
+      <DependentUpon>201702020655247_addednew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702020705107_initialschema1.cs" />
+    <Compile Include="Migrations\201702020705107_initialschema1.Designer.cs">
+      <DependentUpon>201702020705107_initialschema1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702020741499_initialschema2.cs" />
+    <Compile Include="Migrations\201702020741499_initialschema2.Designer.cs">
+      <DependentUpon>201702020741499_initialschema2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702020746174_industryadded.cs" />
+    <Compile Include="Migrations\201702020746174_industryadded.Designer.cs">
+      <DependentUpon>201702020746174_industryadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702021306395_initialschema3.cs" />
+    <Compile Include="Migrations\201702021306395_initialschema3.Designer.cs">
+      <DependentUpon>201702021306395_initialschema3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702151140006_proposal.cs" />
+    <Compile Include="Migrations\201702151140006_proposal.Designer.cs">
+      <DependentUpon>201702151140006_proposal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702151204269_initialschema4.cs" />
+    <Compile Include="Migrations\201702151204269_initialschema4.Designer.cs">
+      <DependentUpon>201702151204269_initialschema4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702200502201_abc.cs" />
+    <Compile Include="Migrations\201702200502201_abc.Designer.cs">
+      <DependentUpon>201702200502201_abc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702220618444_invoice.cs" />
+    <Compile Include="Migrations\201702220618444_invoice.Designer.cs">
+      <DependentUpon>201702220618444_invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702220620547_invoice132.cs" />
+    <Compile Include="Migrations\201702220620547_invoice132.Designer.cs">
+      <DependentUpon>201702220620547_invoice132.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702220712138_update555.cs" />
+    <Compile Include="Migrations\201702220712138_update555.Designer.cs">
+      <DependentUpon>201702220712138_update555.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702220758379_updateee.cs" />
+    <Compile Include="Migrations\201702220758379_updateee.Designer.cs">
+      <DependentUpon>201702220758379_updateee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702220811005_update1234.cs" />
+    <Compile Include="Migrations\201702220811005_update1234.Designer.cs">
+      <DependentUpon>201702220811005_update1234.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702220928520_update12345.cs" />
+    <Compile Include="Migrations\201702220928520_update12345.Designer.cs">
+      <DependentUpon>201702220928520_update12345.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702221132402_updatein.cs" />
+    <Compile Include="Migrations\201702221132402_updatein.Designer.cs">
+      <DependentUpon>201702221132402_updatein.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="layout\AdminLTE-bootstrap-social.css" />
+    <Content Include="layout\AdminLTE-bootstrap-social.min.css" />
+    <Content Include="layout\AdminLTE-fullcalendar.css" />
+    <Content Include="layout\AdminLTE-fullcalendar.min.css" />
+    <Content Include="layout\AdminLTE-select2.css" />
+    <Content Include="layout\AdminLTE-select2.min.css" />
+    <Content Include="layout\AdminLTE-without-plugins.css" />
+    <Content Include="layout\AdminLTE-without-plugins.min.css" />
+    <Content Include="layout\AdminLTE.css" />
+    <Content Include="layout\AdminLTE.min.css" />
+    <Content Include="layout\aero%402x.png" />
+    <Content Include="layout\aero.css" />
+    <Content Include="layout\aero.png" />
+    <Content Include="layout\af.js" />
+    <Content Include="layout\app.js" />
+    <Content Include="layout\app.min.js" />
+    <Content Include="layout\ar.js" />
+    <Content Include="layout\bg.js" />
+    <Content Include="layout\blue%402x.png" />
+    <Content Include="layout\blue.css" />
+    <Content Include="layout\blue.png" />
+    <Content Include="layout\bn.js" />
+    <Content Include="layout\bootstrap-datepicker.ar.js" />
+    <Content Include="layout\bootstrap-datepicker.az.js" />
+    <Content Include="layout\bootstrap-datepicker.bg.js" />
+    <Content Include="layout\bootstrap-datepicker.ca.js" />
+    <Content Include="layout\bootstrap-datepicker.cs.js" />
+    <Content Include="layout\bootstrap-datepicker.cy.js" />
+    <Content Include="layout\bootstrap-datepicker.da.js" />
+    <Content Include="layout\bootstrap-datepicker.de.js" />
+    <Content Include="layout\bootstrap-datepicker.el.js" />
+    <Content Include="layout\bootstrap-datepicker.es.js" />
+    <Content Include="layout\bootstrap-datepicker.et.js" />
+    <Content Include="layout\bootstrap-datepicker.fa.js" />
+    <Content Include="layout\bootstrap-datepicker.fi.js" />
+    <Content Include="layout\bootstrap-datepicker.fr.js" />
+    <Content Include="layout\bootstrap-datepicker.gl.js" />
+    <Content Include="layout\bootstrap-datepicker.he.js" />
+    <Content Include="layout\bootstrap-datepicker.hr.js" />
+    <Content Include="layout\bootstrap-datepicker.hu.js" />
+    <Content Include="layout\bootstrap-datepicker.id.js" />
+    <Content Include="layout\bootstrap-datepicker.is.js" />
+    <Content Include="layout\bootstrap-datepicker.it.js" />
+    <Content Include="layout\bootstrap-datepicker.ja.js" />
+    <Content Include="layout\bootstrap-datepicker.js" />
+    <Content Include="layout\bootstrap-datepicker.ka.js" />
+    <Content Include="layout\bootstrap-datepicker.kk.js" />
+    <Content Include="layout\bootstrap-datepicker.kr.js" />
+    <Content Include="layout\bootstrap-datepicker.lt.js" />
+    <Content Include="layout\bootstrap-datepicker.lv.js" />
+    <Content Include="layout\bootstrap-datepicker.mk.js" />
+    <Content Include="layout\bootstrap-datepicker.ms.js" />
+    <Content Include="layout\bootstrap-datepicker.nb.js" />
+    <Content Include="layout\bootstrap-datepicker.nl-BE.js" />
+    <Content Include="layout\bootstrap-datepicker.nl.js" />
+    <Content Include="layout\bootstrap-datepicker.no.js" />
+    <Content Include="layout\bootstrap-datepicker.pl.js" />
+    <Content Include="layout\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="layout\bootstrap-datepicker.pt.js" />
+    <Content Include="layout\bootstrap-datepicker.ro.js" />
+    <Content Include="layout\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="layout\bootstrap-datepicker.rs.js" />
+    <Content Include="layout\bootstrap-datepicker.ru.js" />
+    <Content Include="layout\bootstrap-datepicker.sk.js" />
+    <Content Include="layout\bootstrap-datepicker.sl.js" />
+    <Content Include="layout\bootstrap-datepicker.sq.js" />
+    <Content Include="layout\bootstrap-datepicker.sv.js" />
+    <Content Include="layout\bootstrap-datepicker.sw.js" />
+    <Content Include="layout\bootstrap-datepicker.th.js" />
+    <Content Include="layout\bootstrap-datepicker.tr.js" />
+    <Content Include="layout\bootstrap-datepicker.ua.js" />
+    <Content Include="layout\bootstrap-datepicker.vi.js" />
+    <Content Include="layout\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="layout\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="layout\bootstrap-slider.js" />
+    <Content Include="layout\bootstrap-theme.css" />
+    <Content Include="layout\bootstrap-theme.min.css" />
+    <Content Include="layout\bootstrap.css" />
+    <Content Include="layout\bootstrap.js" />
+    <Content Include="layout\bootstrap.min.css" />
+    <Content Include="layout\bootstrap.min.js" />
+    <Content Include="layout\bootstrap3-wysihtml5.all.js" />
+    <Content Include="layout\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="layout\bootstrap3-wysihtml5.css" />
+    <Content Include="layout\bootstrap3-wysihtml5.min.css" />
+    <Content Include="layout\boxed-bg.jpg" />
+    <Content Include="layout\boxed-bg.png" />
+    <Content Include="layout\bs.js" />
+    <Content Include="layout\build-config.js" />
+    <Content Include="layout\ca.js" />
+    <Content Include="layout\Chart.js" />
+    <Content Include="layout\Chart.min.js" />
+    <Content Include="layout\ckeditor.js" />
+    <Content Include="layout\config.js" />
+    <Content Include="layout\contents.css" />
+    <Content Include="layout\cs.js" />
+    <Content Include="layout\cy.js" />
+    <Content Include="layout\da.js" />
+    <Content Include="layout\dashboard.js" />
+    <Content Include="layout\dashboard2.js" />
+    <Content Include="layout\datepicker3.css" />
+    <Content Include="layout\daterangepicker.css" />
+    <Content Include="layout\daterangepicker.js" />
+    <Content Include="layout\de-ch.js" />
+    <Content Include="layout\de.js" />
+    <Content Include="layout\default-50x50.gif" />
+    <Content Include="layout\demo.js" />
+    <Content Include="layout\docs.js" />
+    <Content Include="layout\el.js" />
+    <Content Include="layout\en-au.js" />
+    <Content Include="layout\en-ca.js" />
+    <Content Include="layout\en-gb.js" />
+    <Content Include="layout\en.js" />
+    <Content Include="layout\eo.js" />
+    <Content Include="layout\es.js" />
+    <Content Include="layout\et.js" />
+    <Content Include="layout\eu.js" />
+    <Content Include="layout\fa.js" />
+    <Content Include="layout\fi.js" />
+    <Content Include="layout\flat%402x.png" />
+    <Content Include="layout\flat.css" />
+    <Content Include="layout\flat.png" />
+    <Content Include="layout\fo.js" />
+    <Content Include="layout\fr-ca.js" />
+    <Content Include="layout\fr.js" />
+    <Content Include="layout\gl.js" />
+    <Content Include="layout\glyphicons-halflings-regular.svg" />
+    <Content Include="layout\green%402x.png" />
+    <Content Include="layout\green.css" />
+    <Content Include="layout\green.png" />
+    <Content Include="layout\grey%402x.png" />
+    <Content Include="layout\grey.css" />
+    <Content Include="layout\grey.png" />
+    <Content Include="layout\gu.js" />
+    <Content Include="layout\he.js" />
+    <Content Include="layout\hi.js" />
+    <Content Include="layout\hr.js" />
+    <Content Include="layout\hu.js" />
+    <Content Include="layout\icheck.js" />
+    <Content Include="layout\icheck.min.js" />
+    <Content Include="layout\icons.png" />
+    <Content Include="layout\id.js" />
+    <Content Include="layout\is.js" />
+    <Content Include="layout\it.js" />
+    <Content Include="layout\ja.js" />
+    <Content Include="layout\JavaScript1.js" />
+    <Content Include="layout\jquery-jvectormap-1.2.2.css" />
+    <Content Include="layout\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="layout\jquery-jvectormap-usa-en.js" />
+    <Content Include="layout\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="layout\jquery.js" />
+    <Content Include="layout\ka.js" />
+    <Content Include="layout\km.js" />
+    <Content Include="layout\ko.js" />
+    <Content Include="layout\ku.js" />
+    <Content Include="layout\less\skin-black-light.css" />
+    <Content Include="layout\less\skin-black-light.min.css" />
+    <Content Include="layout\less\skin-black.css" />
+    <Content Include="layout\less\skin-black.min.css" />
+    <Content Include="layout\less\skin-blue-light.css" />
+    <Content Include="layout\less\skin-blue-light.min.css" />
+    <Content Include="layout\less\skin-blue.css" />
+    <Content Include="layout\less\skin-blue.min.css" />
+    <Content Include="layout\less\skin-green-light.css" />
+    <Content Include="layout\less\skin-green-light.min.css" />
+    <Content Include="layout\less\skin-green.css" />
+    <Content Include="layout\less\skin-green.min.css" />
+    <Content Include="layout\less\skin-purple-light.css" />
+    <Content Include="layout\less\skin-purple-light.min.css" />
+    <Content Include="layout\less\skin-purple.css" />
+    <Content Include="layout\less\skin-purple.min.css" />
+    <Content Include="layout\less\skin-red-light.css" />
+    <Content Include="layout\less\skin-red-light.min.css" />
+    <Content Include="layout\less\skin-red.css" />
+    <Content Include="layout\less\skin-red.min.css" />
+    <Content Include="layout\less\skin-yellow-light.css" />
+    <Content Include="layout\less\skin-yellow-light.min.css" />
+    <Content Include="layout\less\skin-yellow.css" />
+    <Content Include="layout\less\skin-yellow.min.css" />
+    <Content Include="layout\lt.js" />
+    <Content Include="layout\lv.js" />
+    <Content Include="layout\mk.js" />
+    <Content Include="layout\mn.js" />
+    <Content Include="layout\moment.js" />
+    <Content Include="layout\moment.min.js" />
+    <Content Include="layout\morris.css" />
+    <Content Include="layout\morris.js" />
+    <Content Include="layout\morris.min.js" />
+    <Content Include="layout\ms.js" />
+    <Content Include="layout\nb.js" />
+    <Content Include="layout\nl.js" />
+    <Content Include="layout\no.js" />
+    <Content Include="layout\npm.js" />
+    <Content Include="layout\orange%402x.png" />
+    <Content Include="layout\orange.css" />
+    <Content Include="layout\orange.png" />
+    <Content Include="layout\pink%402x.png" />
+    <Content Include="layout\pink.css" />
+    <Content Include="layout\pink.png" />
+    <Content Include="layout\pl.js" />
+    <Content Include="layout\pt-br.js" />
+    <Content Include="layout\pt.js" />
+    <Content Include="layout\purple%402x.png" />
+    <Content Include="layout\purple.css" />
+    <Content Include="layout\purple.png" />
+    <Content Include="layout\red%402x.png" />
+    <Content Include="layout\red.css" />
+    <Content Include="layout\red.png" />
+    <Content Include="layout\ro.js" />
+    <Content Include="layout\ru.js" />
+    <Content Include="layout\si.js" />
+    <Content Include="layout\sk.js" />
+    <Content Include="layout\skin-black-light.css" />
+    <Content Include="layout\skin-black-light.min.css" />
+    <Content Include="layout\skin-black.css" />
+    <Content Include="layout\skin-black.min.css" />
+    <Content Include="layout\skin-blue-light.css" />
+    <Content Include="layout\skin-blue-light.min.css" />
+    <Content Include="layout\skin-blue.css" />
+    <Content Include="layout\skin-blue.min.css" />
+    <Content Include="layout\skin-green-light.css" />
+    <Content Include="layout\skin-green-light.min.css" />
+    <Content Include="layout\skin-green.css" />
+    <Content Include="layout\skin-green.min.css" />
+    <Content Include="layout\skin-purple-light.css" />
+    <Content Include="layout\skin-purple-light.min.css" />
+    <Content Include="layout\skin-purple.css" />
+    <Content Include="layout\skin-purple.min.css" />
+    <Content Include="layout\skin-red-light.css" />
+    <Content Include="layout\skin-red-light.min.css" />
+    <Content Include="layout\skin-red.css" />
+    <Content Include="layout\skin-red.min.css" />
+    <Content Include="layout\skin-yellow-light.css" />
+    <Content Include="layout\skin-yellow-light.min.css" />
+    <Content Include="layout\skin-yellow.css" />
+    <Content Include="layout\skin-yellow.min.css" />
+    <Content Include="layout\sl.js" />
+    <Content Include="layout\slider.css" />
+    <Content Include="layout\sq.js" />
+    <Content Include="layout\sr-latn.js" />
+    <Content Include="layout\sr.js" />
+    <Content Include="layout\style.css" />
+    <Content Include="layout\sv.js" />
+    <Content Include="layout\th.js" />
+    <Content Include="layout\tr.js" />
+    <Content Include="layout\tt.js" />
+    <Content Include="layout\ug.js" />
+    <Content Include="layout\uk.js" />
+    <Content Include="layout\vi.js" />
+    <Content Include="layout\yellow%402x.png" />
+    <Content Include="layout\yellow.css" />
+    <Content Include="layout\yellow.png" />
+    <Content Include="layout\zh-cn.js" />
+    <Content Include="layout\zh.js" />
+    <Content Include="layout\_all-skins.css" />
+    <Content Include="layout\_all-skins.min.css" />
+    <Content Include="layout\_all.css" />
+    <Content Include="login\StyleSheet1.css" />
+    <Content Include="login\user.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="layout\bootstrap-theme.css.map" />
+    <Content Include="layout\bootstrap-theme.min.css.map" />
+    <Content Include="layout\bootstrap.css.map" />
+    <Content Include="layout\bootstrap.min.css.map" />
+    <Content Include="layout\glyphicons-halflings-regular.eot" />
+    <Content Include="layout\glyphicons-halflings-regular.ttf" />
+    <Content Include="layout\glyphicons-halflings-regular.woff" />
+    <Content Include="layout\glyphicons-halflings-regular.woff2" />
+    <Content Include="layout\bootstrap-less\alerts.less" />
+    <Content Include="layout\bootstrap-less\background-variant.less" />
+    <Content Include="layout\bootstrap-less\border-radius.less" />
+    <Content Include="layout\bootstrap-less\buttons.less" />
+    <Content Include="layout\bootstrap-less\center-block.less" />
+    <Content Include="layout\bootstrap-less\clearfix.less" />
+    <Content Include="layout\bootstrap-less\forms.less" />
+    <Content Include="layout\bootstrap-less\gradients.less" />
+    <Content Include="layout\bootstrap-less\grid-framework.less" />
+    <Content Include="layout\bootstrap-less\grid.less" />
+    <Content Include="layout\bootstrap-less\hide-text.less" />
+    <Content Include="layout\bootstrap-less\image.less" />
+    <Content Include="layout\bootstrap-less\labels.less" />
+    <Content Include="layout\bootstrap-less\list-group.less" />
+    <Content Include="layout\bootstrap-less\mixins.less" />
+    <Content Include="layout\bootstrap-less\nav-divider.less" />
+    <Content Include="layout\bootstrap-less\nav-vertical-align.less" />
+    <Content Include="layout\bootstrap-less\opacity.less" />
+    <Content Include="layout\bootstrap-less\pagination.less" />
+    <Content Include="layout\bootstrap-less\panels.less" />
+    <Content Include="layout\bootstrap-less\progress-bar.less" />
+    <Content Include="layout\bootstrap-less\reset-filter.less" />
+    <Content Include="layout\bootstrap-less\reset-text.less" />
+    <Content Include="layout\bootstrap-less\resize.less" />
+    <Content Include="layout\bootstrap-less\responsive-visibility.less" />
+    <Content Include="layout\bootstrap-less\size.less" />
+    <Content Include="layout\bootstrap-less\tab-focus.less" />
+    <Content Include="layout\bootstrap-less\table-row.less" />
+    <Content Include="layout\bootstrap-less\text-emphasis.less" />
+    <Content Include="layout\bootstrap-less\text-overflow.less" />
+    <Content Include="layout\bootstrap-less\variables.less" />
+    <Content Include="layout\bootstrap-less\vendor-prefixes.less" />
+    <Content Include="layout\less\.csslintrc" />
+    <Content Include="layout\less\404_500_errors.less" />
+    <Content Include="layout\less\AdminLTE-without-plugins.less" />
+    <Content Include="layout\less\AdminLTE.less" />
+    <Content Include="layout\less\alerts.less" />
+    <Content Include="layout\less\bootstrap-social.less" />
+    <Content Include="layout\less\boxes.less" />
+    <Content Include="layout\less\buttons.less" />
+    <Content Include="layout\less\callout.less" />
+    <Content Include="layout\less\carousel.less" />
+    <Content Include="layout\less\control-sidebar.less" />
+    <Content Include="layout\less\core.less" />
+    <Content Include="layout\less\direct-chat.less" />
+    <Content Include="layout\less\dropdown.less" />
+    <Content Include="layout\less\forms.less" />
+    <Content Include="layout\less\fullcalendar.less" />
+    <Content Include="layout\less\header.less" />
+    <Content Include="layout\less\info-box.less" />
+    <Content Include="layout\less\invoice.less" />
+    <Content Include="layout\less\labels.less" />
+    <Content Include="layout\less\lockscreen.less" />
+    <Content Include="layout\less\login_and_register.less" />
+    <Content Include="layout\less\mailbox.less" />
+    <Content Include="layout\less\miscellaneous.less" />
+    <Content Include="layout\less\mixins.less" />
+    <Content Include="layout\less\modal.less" />
+    <Content Include="layout\less\navs.less" />
+    <Content Include="layout\less\plugins.less" />
+    <Content Include="layout\less\print.less" />
+    <Content Include="layout\less\products.less" />
+    <Content Include="layout\less\profile.less" />
+    <Content Include="layout\less\progress-bars.less" />
+    <Content Include="layout\less\select2.less" />
+    <Content Include="layout\less\sidebar-mini.less" />
+    <Content Include="layout\less\sidebar.less" />
+    <Content Include="layout\less\skin-black-light.less" />
+    <Content Include="layout\less\skin-black.less" />
+    <Content Include="layout\less\skin-blue-light.less" />
+    <Content Include="layout\less\skin-blue.less" />
+    <Content Include="layout\less\skin-green-light.less" />
+    <Content Include="layout\less\skin-green.less" />
+    <Content Include="layout\less\skin-purple-light.less" />
+    <Content Include="layout\less\skin-purple.less" />
+    <Content Include="layout\less\skin-red-light.less" />
+    <Content Include="layout\less\skin-red.less" />
+    <Content Include="layout\less\skin-yellow-light.less" />
+    <Content Include="layout\less\skin-yellow.less" />
+    <Content Include="layout\less\small-box.less" />
+    <Content Include="layout\less\social-widgets.less" />
+    <Content Include="layout\less\table.less" />
+    <Content Include="layout\less\timeline.less" />
+    <Content Include="layout\less\users-list.less" />
+    <Content Include="layout\less\variables.less" />
+    <Content Include="layout\less\_all-skins.less" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui2.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\client_info\Create.cshtml" />
+    <Content Include="Views\client_info\Delete.cshtml" />
+    <Content Include="Views\client_info\Details.cshtml" />
+    <Content Include="Views\client_info\Edit.cshtml" />
+    <Content Include="Views\client_info\Index.cshtml" />
+    <Content Include="Views\enquiry_info\Create.cshtml" />
+    <Content Include="Views\enquiry_info\Delete.cshtml" />
+    <Content Include="Views\enquiry_info\Details.cshtml" />
+    <Content Include="Views\enquiry_info\Edit.cshtml" />
+    <Content Include="Views\enquiry_info\Index.cshtml" />
+    <Content Include="Views\enquiry_info\Save.cshtml" />
+    <Content Include="Views\proposal_info\Create.cshtml" />
+    <Content Include="Views\proposal_info\Delete.cshtml" />
+    <Content Include="Views\proposal_info\Details.cshtml" />
+    <Content Include="Views\proposal_info\Edit.cshtml" />
+    <Content Include="Views\proposal_info\Index.cshtml" />
+    <Content Include="Views\invoice_main\Create.cshtml" />
+    <Content Include="Views\invoice_main\Delete.cshtml" />
+    <Content Include="Views\invoice_main\Details.cshtml" />
+    <Content Include="Views\invoice_main\Edit.cshtml" />
+    <Content Include="Views\invoice_main\Index.cshtml" />
+    <Content Include="Views\invoice_item\Create.cshtml" />
+    <Content Include="Views\invoice_item\Delete.cshtml" />
+    <Content Include="Views\invoice_item\Details.cshtml" />
+    <Content Include="Views\invoice_item\Edit.cshtml" />
+    <Content Include="Views\invoice_item\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\PUpload\" />
+    <Folder Include="App_Data\Upload\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701250515261_initial-schema.resx">
+      <DependentUpon>201701250515261_initial-schema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301237040_second migration.resx">
+      <DependentUpon>201701301237040_second migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301241471_addedname.resx">
+      <DependentUpon>201701301241471_addedname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301243142_secondadded.resx">
+      <DependentUpon>201701301243142_secondadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301245423_finalmigrat.resx">
+      <DependentUpon>201701301245423_finalmigrat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020620556_countryadded.resx">
+      <DependentUpon>201702020620556_countryadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020655247_addednew.resx">
+      <DependentUpon>201702020655247_addednew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020705107_initialschema1.resx">
+      <DependentUpon>201702020705107_initialschema1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020741499_initialschema2.resx">
+      <DependentUpon>201702020741499_initialschema2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020746174_industryadded.resx">
+      <DependentUpon>201702020746174_industryadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702021306395_initialschema3.resx">
+      <DependentUpon>201702021306395_initialschema3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702151140006_proposal.resx">
+      <DependentUpon>201702151140006_proposal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702151204269_initialschema4.resx">
+      <DependentUpon>201702151204269_initialschema4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702200502201_abc.resx">
+      <DependentUpon>201702200502201_abc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220618444_invoice.resx">
+      <DependentUpon>201702220618444_invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220620547_invoice132.resx">
+      <DependentUpon>201702220620547_invoice132.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220712138_update555.resx">
+      <DependentUpon>201702220712138_update555.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220758379_updateee.resx">
+      <DependentUpon>201702220758379_updateee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220811005_update1234.resx">
+      <DependentUpon>201702220811005_update1234.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220928520_update12345.resx">
+      <DependentUpon>201702220928520_update12345.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702221132402_updatein.resx">
+      <DependentUpon>201702221132402_updatein.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50593</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50593/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

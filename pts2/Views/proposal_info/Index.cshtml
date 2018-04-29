@@ -1,0 +1,83 @@
+﻿@model IEnumerable<pts2.Models.proposal_info>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="content-header"> </section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box" style="padding:20px;">
+                <div class="box-header">
+                    <h3 class="box-title">Proposals</h3>
+                    <button onclick="location.href='@Url.Action("Create", "proposal_info")' ;return false;" class="btn btn-success pull-right">Add Proposal</button>
+                </div>
+
+                <table id="example1" class="table table-striped table-bordered" cellspacing="0" style="width:100%;">
+                    <thead>
+                        <tr>
+                           
+                            <th>
+                                @Html.DisplayNameFor(model => model.prop_enquiry)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sentdate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sent_to)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sent_via)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                               
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.prop_enquiry)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sentdate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sent_to)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sent_via)
+                                    <br />
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.ActionLink("Delete", "DeleteConfirmed", "proposal_info", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this inquiry?');" })
+                                    }
+
+
+                                    <!--  @Html.ActionLink("Delete", "Delete", new { id = item.Id })-->
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            "scrollX": true
+        });
+    });
+</script>
+

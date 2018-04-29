@@ -1,0 +1,85 @@
+﻿@model pts2.Models.proposal_info
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="content-header"> </section>
+    <section class="content">
+
+        <!-- left column -->
+        <!-- general form elements -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Inquiry</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-md-6">
+
+                        @Html.HiddenFor(model => model.Id)
+
+                        <!--  <div class="form-group">
+                              @Html.LabelFor(model => model.eid, "eid", htmlAttributes: new { @class = "control-label col-md-2" })
+                              <div class="col-md-10">
+                                  @Html.DropDownList("eid", null, htmlAttributes: new { @class = "form-control" })
+                                  @Html.ValidationMessageFor(model => model.eid, "", new { @class = "text-danger" })
+                              </div>
+                          </div> -->
+
+
+
+                        <div class="form-group">
+                            <label>Enquiry</label>
+
+                            @Html.EditorFor(model => model.prop_enquiry, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.prop_enquiry, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Sent Date</label>
+                            @Html.EditorFor(model => model.sentdate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sentdate, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Sent To</label>
+                            @Html.EditorFor(model => model.sent_to, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sent_to, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Sent Via</label>
+
+                            @Html.EditorFor(model => model.sent_via, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sent_via, "", new { @class = "text-danger" })
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+
+                <input type="submit" value="Save" class="btn btn-success pull-right" />
+                <button onclick="location.href='@Url.Action("Index", "proposal_info")' ;return false;" class="btn btn-primary pull-right" style="margin-right:8px;">Back</button>
+
+            </div>
+
+        </div>
+
+
+    </section>
+}
+

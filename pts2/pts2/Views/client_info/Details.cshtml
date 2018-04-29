@@ -1,0 +1,122 @@
+﻿@model pts2.Models.client_info
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<section class="content-header"> </section>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Client</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+
+
+
+               
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.firstname):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.firstname)
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.lastname):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.lastname)
+                            </label> 
+                            </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.companyname):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.companyname)
+                            </label>
+                            </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.address1):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.address1)
+                            </label>
+  </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.address2):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.address2)
+                            </label>
+                            </div>
+
+                        
+               
+
+                <div class="col-md-6">
+
+                        <label class="col-md-3">
+                            @Html.DisplayNameFor(model => model.contact1)
+                        </label>
+                        <label class="col-md-9">
+                            @Html.DisplayFor(model => model.contact1)
+                        </label>
+                    </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.contact2)
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.contact2)
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.email_id):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.email_id)
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.vat_no)
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.vat_no)
+                            </label></div>
+                        </div></div>
+
+                   
+                   
+                </div>
+            </div>
+            <div class="box-footer">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @class = "btn btn-success pull-right" })
+                <button onclick="location.href='@Url.Action("Index", "client_info")' ;return false;" class="btn btn-primary pull-right" style="margin-right:8px;">Back</button>
+            </div>
+        </div>
+           
+        
+</section>
+
+
+
+

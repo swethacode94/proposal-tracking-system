@@ -1,0 +1,113 @@
+﻿@model pts2.Models.client_info
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+<section class="content-header"> </section>
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6" style="width:100%;">
+            <!-- general form elements -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Delete</h3>
+                </div>
+                 
+
+
+                 <h3 style="text-align:center;">Are you sure you want to delete this?</h3>
+                    <div>
+
+                <br />
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.firstname)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.firstname)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.lastname)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.lastname)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.companyname)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.companyname)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.address1)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.address1)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.address2)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.address2)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.contact1)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.contact1)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.contact2)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.contact2)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.email_id)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.email_id)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.vat_no)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.vat_no)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="box-footer">
+                                <input type="submit" value="Delete" class="btn btn-warning pull-right" /> 
+                                @Html.ActionLink("Back to List", "Index")  
+                            </div>
+                        }
+
+                       
+                    </div></div></div></div></section>

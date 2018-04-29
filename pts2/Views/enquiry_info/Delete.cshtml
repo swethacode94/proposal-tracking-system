@@ -1,0 +1,85 @@
+﻿@model pts2.Models.enquiry_info
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<section class="content-header"> </section>
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6" style="width:100%;">
+            <!-- general form elements -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Delete</h3>
+                </div>
+
+
+               
+                <div>
+                    <br />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.client_info.firstname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.client_info.firstname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.projectname)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.projectname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.source)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.source)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.remark1)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.remark1)
+                        </dd>
+
+                        
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.status)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.status)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tag)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tag)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="box-footer">
+                            <input type="submit" value="Delete" class="btn btn-danger pull-right" /> 
+                         @Html.ActionLink("Back to List", "Index") 
+                        </div>
+                    }
+                </div></div></div></div></section>

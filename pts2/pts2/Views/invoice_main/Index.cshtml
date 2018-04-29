@@ -1,0 +1,508 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css">
+
+<link rel="stylesheet" href="~/Content/jquery.css">
+<script src="~/Scripts/jquery-ui2.js"></script>
+
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<h2>Master details entry form</h2>
+<div class="container">
+    <div class="master">
+        <h2>Order</h2>
+        <table class="table table-responsive">
+            <tr>
+                <td>Project name</td>
+                <td>
+                    <input type="text" id="proposal_name" class="form-control" />
+                    <span class="error">project name required</span>
+                </td>
+                <td>first name</td>
+                <td>
+                    <input type="text" id="fname" class="form-control" />
+                    <span class="error">fname required</span>
+                </td>
+            </tr>
+            <tr>
+                <td>info</td>
+                <td>
+                    <input type="text" id="info" class="form-control" />
+                    <span class="error">email required</span>
+                </td>
+
+                <td>pid</td>
+                <td>
+                    <input type="text" id="pid" class="form-control" />
+                    <span class="error">id required</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="details">
+        <h2>
+            Order items
+        </h2>
+        <table class="table table-responsive">
+            <tr>
+               
+                <td>Item</td>
+                <td>Quantity</td>
+                <td>Rate</td>
+               <td>SubTotal</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="mycontainer" id="mainrow">
+               
+                <td>
+                    <input type="text" id="item" class="item form-control" />
+                    <span class="error">item quantity required</span>
+                </td>
+                <td>
+                    <input type="text" id="quantity" class="quantity form-control" />
+                    <span class="error">Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="text" id="rate" class="rate form-control" />
+                    <span class="error">Valid rate required</span>
+                </td>
+                <td>
+                    <input type="text" id="subtotal" class="subtotal form-control" />
+                    <span class="error">Valid rate required</span>
+                </td>
+                <td>
+                    <input type="button" id="add" value="add" style="width:80px" class="btn btn-success" />
+                </td>
+            </tr>
+        </table>
+        <div id="orderItems">
+            <table class="table table-responsive" id="orderdetailsItems"></table>
+            <span id="orderItemError" style="color:red"></span>
+        </div>
+        <div>
+            <label>Total Amount:</label> 
+           <p id="totalamount"></p>
+        </div>
+        <div style="padding:10px 0; text-align:right">
+            <input id="submit" type="button" value="Save Order" class="btn btn-warning" style="padding:10px 20px" />
+        </div>
+    </div>
+</div>
+
+
+<style>
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+    tr.error {
+        background-color: rgba(255,0,0,0.35);
+    }
+</style>
+<script>
+    $('#rate').keyup(function () {
+        //get txtAmt value
+
+        var total = parseInt($('#quantity').val().trim()) * parseFloat($('#rate').val().trim());
+
+        document.getElementById("subtotal").value = total;
+
+
+    });
+</script>
+
+<script>
+    $('#quantity').keyup(function () {
+        //get txtAmt value
+        
+         
+
+            var total = parseInt($('#quantity').val().trim()) * parseFloat($('#rate').val().trim());
+
+            document.getElementById("subtotal").value = total;
+      
+
+    });
+</script>
+
+
+     
+<script>
+
+    $(document).ready(function () {
+        //Add button click event
+        var totalamt = 0;
+            
+        $('#rate').change(function () {
+            //get txtAmt value
+           
+            totalamt = parseInt($('#quantity').val().trim()) * parseFloat($('#rate').val().trim()) + totalamt;
+
+           
+            document.getElementById("totalamount").innerHTML = totalamt;
+
+
+
+        });
+
+        
+  
+$('#add').click(function () {
+    //validation and add order items
+
+ 
+                var $newRow = $('#mainrow').clone().removeAttr('id');
+                //Replace add button with remove button
+                $('#add', $newRow).addClass('remove').val('Remove').removeClass('btn-success').addClass('btn-danger');
+
+              
+
+                //remove id attribute from new clone row
+                $('#item,#quantity,#rate,#subtotal,#add', $newRow).removeAttr('id');
+                $('span.error', $newRow).remove();
+                //append clone row
+                $('#orderdetailsItems').append($newRow);
+
+    //clear select data
+
+               $('#item,#quantity,#rate,#subtotal').val('');
+                $('#orderItemError').empty();
+           
+
+})
+
+
+var tot = 0;
+$('#orderdetailsItems').on('change', function () {
+
+    $('.rate').keyup(function () {
+        //get txtAmt value
+       
+        var   q = $(this).closest("tr").find(".quantity").val();
+        var   s = $(this).closest("tr").find(".rate").val();
+
+        tot = parseFloat(q*s);
+
+        $(this).closest("tr").find(".subtotal").val(tot);
+
+        
+       
+       
+      
+        
+       
+
+    });
+
+   
+   
+    totalamt = totalamt + tot;
+
+    document.getElementById("totalamount").innerHTML = totalamt;
+   
+   
+
+})
+    
+      
+
+
+
+
+
+
+
+        //remove button click event
+        $('#orderdetailsItems').on('click', '.remove', function () {
+            $(this).parents('tr').remove();
+        });
+
+
+        $('#submit').click(function () {
+            var isAllValid = true;
+            
+if (
+                 $('.item').val() != "" ||
+                 (parseInt($('.quantity').val()) || 0) != 0 ||
+                 $('.rate').val() != "" ||
+                 isNaN($('.rate').val()) ||
+                  $('.subtotal').val() != "" ||
+                 isNaN($('.subtotal').val())
+
+                 ) {
+               
+
+    if ($('#item').val().trim() == '') {
+        isAllValid = false;
+        $('#item').siblings('span.error').css('visibility', 'visible');
+    }
+    else {
+        $('#item').siblings('span.error').css('visibility', 'hidden');
+    }
+
+    if (!($('#quantity').val().trim() != '' && !isNaN($('#quantity').val().trim()))) {
+        isAllValid = false;
+        $('#quantity').siblings('span.error').css('visibility', 'visible');
+    }
+    else {
+        $('#quantity').siblings('span.error').css('visibility', 'hidden');
+    }
+
+    if (!($('#rate').val().trim() != '' && !isNaN($('#rate').val().trim()))) {
+        isAllValid = false;
+        $('#rate').siblings('span.error').css('visibility', 'visible');
+    }
+    else {
+        $('#rate').siblings('span.error').css('visibility', 'hidden');
+    }
+
+
+    if (!($('#subtotal').val().trim() != '' && !isNaN($('#subtotal').val().trim()))) {
+        isAllValid = false;
+        $('#subtotal').siblings('span.error').css('visibility', 'visible');
+    }
+    else {
+        $('#subtotal').siblings('span.error').css('visibility', 'hidden');
+    }
+
+
+} else { }
+
+
+
+
+
+
+            //validate order items
+            $('#orderItemError').text('');
+            var list = [];
+            var errorItemCount = 0;
+
+            if (
+                  $('.item').val() != "" ||
+                  (parseInt($('.quantity').val()) || 0) != 0 ||
+                  $('.rate').val() != "" ||
+                  isNaN($('.rate').val()) ||
+                   $('.subtotal').val() != "" ||
+                  isNaN($('.subtotal').val())
+
+                  ) {
+                var orderI = {
+                    item: $('.item').val(),
+                    quantity: parseInt($('.quantity').val()),
+                    rate: parseFloat($('.rate').val()),
+                    total: parseInt($('.quantity').val()) * parseFloat($('.rate').val())
+                }
+                list.push(orderI);
+
+
+
+            } else {
+
+                
+            }
+
+
+
+           
+            $('#orderdetailsItems tr').each(function (index, ele) {
+                if (
+                    $('.item', this).val() == "" ||
+                    (parseInt($('.quantity', this).val()) || 0) == 0 ||
+                    $('.rate', this).val() == "" ||
+                    isNaN($('.rate', this).val()) ||
+                     $('.subtotal', this).val() == "" ||
+                    isNaN($('.subtotal', this).val())
+                    
+                    ) {
+                    errorItemCount++;
+                    $(this).addClass('error');
+                } else { 
+                    var orderItem = {
+                        item: $('.item', this).val(),
+                        quantity: parseInt($('.quantity', this).val()),
+                        rate: parseFloat($('.rate', this).val()),
+                        total: parseInt($('.quantity', this).val()) * parseFloat($('.rate', this).val())
+                    }
+                    list.push(orderItem);
+ }
+            })
+
+           
+
+            if (errorItemCount > 0) {
+                $('#orderItemError').text(errorItemCount + " invalid entry in order item list.");
+                isAllValid = false;
+            }
+
+            if (list.length == 0) {
+                $('#orderItemError').text('At least 1 order item required.');
+                isAllValid = false;
+            }
+
+            if ($('#proposal_name').val().trim() == '') {
+                $('#proposal_name').siblings('span.error').css('visibility', 'visible');
+                isAllValid = false;
+            }
+            else {
+                $('#proposal_name').siblings('span.error').css('visibility', 'hidden');
+            }
+
+            if ($('#fname').val().trim() == '') {
+                $('#fname').siblings('span.error').css('visibility', 'visible');
+                isAllValid = false;
+            }
+            else {
+                $('#fname').siblings('span.error').css('visibility', 'hidden');
+            }
+            if ($('#info').val().trim() == '') {
+                $('#info').siblings('span.error').css('visibility', 'visible');
+                isAllValid = false;
+            }
+            else {
+                $('#info').siblings('span.error').css('visibility', 'hidden');
+            }
+            if ($('#pid').val().trim() == '') {
+                $('#pid').siblings('span.error').css('visibility', 'visible');
+                isAllValid = false;
+            }
+            else {
+                $('#pid').siblings('span.error').css('visibility', 'hidden');
+            }
+           
+
+   if (isAllValid) {
+                var data = {
+                    pid: $('#pid').val().trim(),
+                    proposal_name: $('#proposal_name').val().trim(),
+                  
+                    invoice_item: list
+
+                }
+
+                $(this).val('Please wait...');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/invoice_main/save',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data.status) {
+                            alert('Successfully saved');
+                            //here we will clear the form
+                            list = [];
+                            $('#proposal_name,#fname,#info,#pid').val('');
+                            $('#orderdetailsItems').empty();
+                            $('#item,#quantity,#rate,#subtotal').val('');
+                        }
+                        else {
+                            alert('Error');
+                        }
+                        $('#submit').text('Save');
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        $('#submit').text('Save');
+                    }
+                });
+
+                $(this).val('Submit');
+            }
+
+        });
+
+    });
+
+   
+
+
+
+</script>
+    
+
+<script>
+    $(document).ready(function () {
+        $("#proposal_name").autocomplete({
+            minLength: 3,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/invoice_main/AutoComplete",
+                    type: "POST",
+                    datatype: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        if (!$.trim(data)) {
+
+                            document.getElementById("#proposal_name").disabled = true;
+                            document.getElementById("demo").innerHTML = "User doesn't exists";
+
+
+
+                        } else {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.prop_enquiry,
+                                    value: item.prop_enquiry,
+                                    desc: item.sent_to,
+                                    id: item.Id,
+                                    name: item.firstname
+
+                                }
+                            }))
+                        }
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#proposal_name").val(ui.item.label);
+                $("#proposalname").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#proposal_name").val(ui.item.label);
+                $("#proposal_name").val(ui.item.value);
+                $("#pid").val(ui.item.id);
+                $("#info").val(ui.item.desc);
+                $("#fname").val(ui.item.name);
+                $("#project-description").html(ui.item.desc);
+                
+               
+               
+
+
+
+
+                return false;
+            }
+
+        })
+            .autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                .append("<div>" + item.label + "<br>" + item.desc + "</div>")
+                .appendTo(ul);
+
+
+
+            };
+
+    });
+
+</script>
+
+
+
+
+

@@ -1,0 +1,80 @@
+﻿@model pts2.Models.proposal_info
+
+@{
+    ViewBag.Title = "Details";
+}
+<section class="content-header"> </section>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Inquiry</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    
+
+                    <div class="col-md-6">
+                        <label class="col-md-4">
+                          Source of Enquiry
+                        </label>
+                        <label class="col-md-6">
+                          
+                              @if (Model.eid == null)
+                              {
+                                 @("Direct Enquiry")
+                              }
+                              else
+                              {
+                                @("Registered Enquiry")
+                              }
+                        </label>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <label class="col-md-4">
+                            @Html.DisplayNameFor(model => model.sentdate)
+                        </label>
+                        <label class="col-md-6">
+                            @Html.DisplayFor(model => model.sentdate)
+                        </label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="col-md-4">
+                            @Html.DisplayNameFor(model => model.sent_to)
+                        </label>   <label class="col-md-6">
+                            @Html.DisplayFor(model => model.sent_to)
+                        </label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="col-md-4">
+                            @Html.DisplayNameFor(model => model.sent_via)
+                        </label>
+                        <label class="col-md-6">
+                            @Html.DisplayFor(model => model.sent_via)
+                        </label>
+                    </div>
+
+                    <div class="col-md-6">
+
+
+                        
+                        @Html.ActionLink("Download", "Download", new { id = Model.Id }, new { @class="col-md-6"})
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box-footer">
+            @* <a href= @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) class="btn btn-success pull-right" >Edit</a>*@
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-success pull-right" })
+            <button onclick="location.href='@Url.Action("Index", "proposal_info")' ;return false;" class="btn btn-primary pull-right" style="margin-right:8px;">Back</button>
+        </div>
+
+
+    </div>
+
+</section>

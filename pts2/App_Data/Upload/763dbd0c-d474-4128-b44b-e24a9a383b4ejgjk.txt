@@ -1,0 +1,32 @@
+  $(document).ready(function () {
+        $("#search").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/enquiry_info/AutoComplete",
+                    type: "POST",
+                    datatype: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                       
+                            response($.map(data, function (item) {
+                           
+                                return {
+                                    label: item.email_id,
+                                    value: item.email_id
+                                }
+                           
+                            })
+                            }
+                    
+                        )},
+                    messages: {
+                        noResult: "", results: ""
+                    }
+
+
+
+                });
+            }
+        });
+    });
+</script>

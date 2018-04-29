@@ -1,0 +1,98 @@
+﻿@model pts2.Models.enquiry_info
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<section class="content-header"> </section>
+<section class="content">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Inquiry</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label class="col-md-3">
+                            @Html.DisplayNameFor(model => model.client_info.email_id):
+                        </label>
+                        <label class="col-md-9">
+                       @Html.DisplayFor(model => model.client_info.email_id)
+                        </label></div>
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                        @Html.DisplayNameFor(model => model.projectname):
+                                    </label>
+                                    <label class="col-md-9">
+                                        @Html.DisplayFor(model => model.projectname)
+                                    </label></div>
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.source):
+                            </label>
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.source)
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.remark1):
+                            </label>
+
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.remark1)
+                            </label>
+                            </div>
+
+                       
+                    <div class="col-md-6">
+                        <label class="col-md-3">
+                            @Html.DisplayNameFor(model => model.status):
+                        </label>
+
+                        <label class="col-md-9">
+                            @Html.DisplayFor(model => model.status)
+                        </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="col-md-3">
+                                @Html.DisplayNameFor(model => model.tag):
+                            </label>
+
+                            <label class="col-md-9">
+                                @Html.DisplayFor(model => model.tag)
+                            </label>
+                        </div>
+
+                     
+                    <div class="col-md-6">
+                        
+
+                        
+                        @Html.ActionLink("Download","Download", new { id = Model.Id })
+                        
+                    </div>
+
+
+                            
+                        
+                        </div>
+                   
+                </div>
+            </div>
+        <div class="box-footer">
+           @* <a href= @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) class="btn btn-success pull-right" >Edit</a>*@
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-success pull-right" })
+            <button onclick="location.href='@Url.Action("Index", "enquiry_info")' ;return false;" class="btn btn-primary pull-right" style="margin-right:8px;">Back</button>
+        </div>
+
+
+    </div>
+   
+</section>
+                
+                
+                    
+                

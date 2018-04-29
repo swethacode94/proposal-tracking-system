@@ -1,0 +1,59 @@
+  string zipfilename = Guid.NewGuid() + "MyZip.zip";
+            Response.ContentType = "application/zip";
+            Response.AddHeader("content-disposition",zipfilename);
+            byte[] buffer = new byte[10000000];
+            ZipOutputStream zipoutputstream = new ZipOutputStream(Response.OutputStream);
+            zipoutputstream.SetLevel(3);
+            try
+            {
+
+                // attachments_info attachment;
+
+                //  attachment = db.attachment.FirstOrDefault(x => x.cid == id);
+
+                var q = from c in db.attachment where c.cid == id select c;
+
+
+
+
+                DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/App_Data/Upload/"));
+
+
+                foreach (var i in di.GetFiles())
+                {
+                    
+                        if (q.Count(c=>c.fileName==i.Name)>0)
+                        {
+
+                          fs = System.IO.File.OpenRead(i.FullName);
+                            ZipEntry zipentry = new ZipEntry(ZipEntry.CleanName(i.Name));
+                            zipentry.Size = fs.Length;
+                            zipoutputstream.PutNextEntry(zipentry);
+                            int count = fs.Read(buffer, 0, buffer.Length);
+                            while (count > 0)
+                            {
+                                zipoutputstream.Write(buffer, 0, count);
+                                count = fs.Read(buffer, 0, buffer.Length);
+                                if (!Response.IsClientConnected)
+                                {
+                                    break;
+                                }
+                               
+                            }
+
+                            Response.Flush();
+                        }
+                        
+                        
+                    }
+                fs.Close();
+                zipoutputstream.Close();
+                Response.Flush();
+                Response.End();
+                }
+            
+
+            catch (Exception)
+            {
+                throw;
+            }

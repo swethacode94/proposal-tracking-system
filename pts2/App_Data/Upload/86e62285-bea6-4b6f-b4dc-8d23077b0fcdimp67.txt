@@ -1,0 +1,143 @@
+@model proposalts.Models.enquiry
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<link href="~/css/jquery-ui-1.9.0.custom.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/Scripts/jquery-ui-1.9.0.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <br />
+
+        <h4>enquiry</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="autocomplete-textbox" class="control-label col-md-2">customer: </label>
+<input type="text" id="txtName" class="form-control" />
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.projectname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.projectname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.projectname, "", new { @class = "text-danger" })
+                </div></div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.source, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.source, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.source, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.remark1, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.remark1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.remark1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.remark2, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.remark2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.remark2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.remark3, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.remark3, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.remark3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.status, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tag, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tag, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+  
+        <div class="form-group">
+            @Html.LabelFor(model => model.attachments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.attachments, "", new { @type = "file", @multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.attachments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+        </div>
+}
+
+        <script type="text/javascript">
+    $(document).ready(function () {
+        $('#txtName').autocomplete({
+            source: function (request, response) {
+                var autocompleteUrl = '/api/StudentAPI' + '?searchText=' + request.term;
+                $.ajax({
+                    url: autocompleteUrl,
+                    type: 'GET',
+                    cache: false,
+                    dataType: 'json',
+                    success: function (json) {
+                        response($.map(json, function (data, id) {
+                            return {
+                                label: data.Name,
+                                value: data.Name
+                            };
+                        }));
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        console.log('some error occured', textStatus, errorThrown);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (event, ui) {
+                lblMessage.innerText = "Your Selected Name :";
+                lblSelectedVal.innerText = ui.item.label;
+                $('#txtName').val(ui.item.label);
+                return false;
+            }
+        });
+    });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+                

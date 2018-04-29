@@ -1,0 +1,240 @@
+﻿@model pts2.Models.proposal_info
+
+@{
+    ViewBag.Title = "Create";
+}
+<link rel="stylesheet" href="~/Content/themes/base/jquery-ui.css">
+
+
+
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#search").autocomplete({
+            minLength: 3,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/proposal_info/AutoComplete",
+                    type: "POST",
+                    datatype: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        if (!$.trim(data)) {
+                           
+                            document.getElementById("search").disabled = true;
+                            document.getElementById("demo").innerHTML = "User doesn't exists , Please go to Project Name Field for Direct Proposal";
+                                $("#prop_enquiry").css("border", "1px solid red");
+                        
+                           
+
+                        } else {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.projectname,
+                                    value: item.projectname,
+                                    desc: item.email_id,
+                                    id: item.Id
+                                    
+                                    
+                                }
+                            }))
+                        }
+                    }
+                })
+            },
+            focus: function (event, ui) {
+                $("#search").val(ui.item.label); 
+                $("#prop_enquiry").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#search").val(ui.item.label);
+                $("#search").val(ui.item.value);
+                $("#eid").val(ui.item.id);
+                $("#project-description").html(ui.item.desc);
+                $("#prop_enquiry").val(ui.item.label);
+                $("#prop_enquiry").val(ui.item.value);
+                $("#sent_to").val(ui.item.desc);
+                $("#project-description").html(ui.item.desc);
+
+
+
+                return false;
+            }
+            
+        })
+            .autocomplete("instance")._renderItem = function (ul, item) {
+                    return $("<li>")
+                    .append("<div>" + item.label + "<br>" + item.desc + "</div>")
+                    .appendTo(ul);
+
+
+
+                };
+
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#sent_to").autocomplete({
+            minLength: 3,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/proposal_info/AutoCompletesent",
+                    type: "POST",
+                    datatype: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                       
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.email_id,
+                                    value: item.email_id,
+                                    desc: item.firstname
+
+                                }
+                            }))
+                    }
+                });
+            },
+
+            focus: function (event, ui) {
+                $("#sent_to").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#sent_to").val(ui.item.label);
+                $("#sent_to").val(ui.item.value);
+                $("#project-description").html(ui.item.desc);
+
+
+                return false;
+            }
+        })
+
+                .autocomplete("instance")._renderItem = function (ul, item) {
+                    return $("<li>")
+                    .append("<div>" + item.desc + "<br>" + item.label + "</div>")
+                    .appendTo(ul);
+
+
+
+                };
+
+    });
+
+</script>
+
+<!--<script>
+    $(document).ready(function () {
+        $("#sentdate").datepicker({
+            dateFormat: "dd-mm-yy",
+            changeMonth: true,
+            changeYear: true,
+
+        });
+    });
+</script> -->
+
+
+
+            
+
+
+                        @using (Html.BeginForm("Create", "proposal_info", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+     <!-- Content Header (Page header) -->
+    <section class="content-header"> </section>
+    <section class="content">
+
+                               <!-- left column -->
+                                <!-- general form elements -->
+                                <div class="box box-default">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">New Proposal</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row">
+
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                           
+                                            <div class="col-md-6">
+
+                                                <div class="form-group">
+                                                    <label>Enquiry</label>
+
+                                                    <input type="text" name="search" id="search" class="form-control">
+                                                    <p id="demo" style="color:red"></p>
+                                                </div>
+
+                                                
+                                                <div class="form-group">
+
+                                                    <label>Project Name</label>
+
+                        @Html.EditorFor(model => model.prop_enquiry, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.prop_enquiry, "", new { @class = "text-danger" })
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>Sent Date</label>
+                        @Html.EditorFor(model => model.sentdate, new { htmlAttributes = new { @class = "form-control datecontrol" } })
+                        @Html.ValidationMessageFor(model => model.sentdate, "", new { @class = "text-danger" })
+
+                                                </div>
+
+                                               
+                                                </div><div class="col-md-6">
+
+
+                                                <div class="form-group">
+                                                    <label>Sent to</label>
+                        @Html.EditorFor(model => model.sent_to, new { htmlAttributes = new { @class = "form-control"} })
+                        @Html.ValidationMessageFor(model => model.sent_to, "", new { @class = "text-danger" })
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Sent Via</label>
+                        @Html.EditorFor(model => model.sent_via, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sent_via, "", new { @class = "text-danger" })
+
+                                                </div>
+                                                          <div class="form-group">
+                                                              <label>FileInput</label>
+
+                                                              <input type="file" name="file" multiple="multiple" />
+
+                                                          </div>
+                                            @Html.HiddenFor(model => model.eid)
+                                            </div>
+                                        </div>
+                                    </div></div>
+
+                                    <div class="box-footer">
+
+                                        <input type="submit" value="Create" class="btn btn-success pull-right" />
+                                        <button onclick="location.href='@Url.Action("Index", "Proposal_info")' ;return false;" class="btn btn-danger pull-right" style="margin-right:8px;">Cancel</button>
+
+
+</div>
+                                    
+                        </section>
+                    }
+

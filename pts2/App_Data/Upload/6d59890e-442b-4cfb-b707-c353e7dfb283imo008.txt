@@ -1,0 +1,22 @@
+CREATE TABLE [dbo].[enquiries] (
+    [eid]         BIGINT         IDENTITY (1, 1) NOT NULL,
+    [cid]         BIGINT         NOT NULL,
+    [projectname] NVARCHAR (MAX) NULL,
+    [source]      NVARCHAR (MAX) NULL,
+    [remark1]     NVARCHAR (MAX) NULL,
+    [remark2]     NVARCHAR (MAX) NULL,
+    [remark3]     NVARCHAR (MAX) NULL,
+    [status]      NVARCHAR (MAX) NULL,
+    [tag]         NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_dbo.enquiry] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_dbo.enquiry_dbo.clientinfo] FOREIGN KEY ([cid]) REFERENCES [dbo].[client_info] ([id]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[attachments]
+(
+	[aid] BIGINT         IDENTITY (1, 1) NOT NULL, 
+    [cid] BIGINT NOT NULL, 
+    [filename] NVARCHAR(MAX) NULL,
+	 CONSTRAINT [PK_dbo.attachment] PRIMARY KEY CLUSTERED ([aid] ASC),
+    CONSTRAINT [FK_dbo.attachment_dbo.enquiry] FOREIGN KEY ([cid]) REFERENCES [dbo].[enquiry] ([eid]) ON DELETE CASCADE
+	)

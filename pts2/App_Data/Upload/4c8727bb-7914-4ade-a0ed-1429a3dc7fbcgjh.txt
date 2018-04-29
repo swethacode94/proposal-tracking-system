@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace proposal_tracking_system.Controllers
+{
+    public class customer_infoController : Controller
+    {
+        customer_infoContext cinfo = new customer_infoContext();
+
+        public ActionResult Index()
+        {
+            return View(cinfo.customer_info.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+
+        }
+        [HttpPost]
+
+        public ActionResult Create(customer_info custinfo)
+        {
+
+            if (ModelState.IsValid)
+            {
+                cinfo.customer_info.Add(custinfo);
+                cinfo.SaveChanges();
+
+                return RedirectToAction("Index");
+
+            }
+
+            return View(custinfo);
+        }
+    }
+}

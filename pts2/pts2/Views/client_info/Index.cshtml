@@ -1,0 +1,103 @@
+﻿@model IEnumerable<pts2.Models.client_info>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+<section class="content-header"> </section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box" style="padding:20px;">
+
+                <div class="box-header">
+                    <h3 class="box-title">Clients</h3>
+                    <button onclick="location.href='@Url.Action("Create", "client_info")' ;return false;" class="btn btn-success pull-right">Add Client</button>
+                </div>
+
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.firstname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.lastname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.companyname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.contact1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.contact2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.email_id)
+                            </th>
+
+
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                   
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.firstname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lastname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.companyname)
+                                </td>
+                        <td>
+                                    @Html.DisplayFor(modelItem => item.contact1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.contact2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.email_id)
+                                </td>
+
+
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                                    @Html.ActionLink("Details", "Details", new { id = item.id })
+@using (Html.BeginForm())
+                        {
+    @Html.AntiForgeryToken()
+
+                                    @Html.ActionLink("Delete", "DeleteConfirmed", "client_info", new { id = item.id }, new { onclick = "return confirm('Are you sure you wish to delete this client?');" })
+}      </td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table></div>
+
+                    
+               </div></div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "scrollX": true
+        });
+    });
+</script>
